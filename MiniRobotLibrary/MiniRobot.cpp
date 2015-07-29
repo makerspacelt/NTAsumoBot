@@ -89,7 +89,7 @@ int MiniRobot::distanceToEnemy(){
     digitalWrite(RANGE_TRIG, HIGH);
     delayMicroseconds(10);
     digitalWrite(RANGE_TRIG, LOW);
-    duration = pulseIn(RANGE_ECHO, HIGH);
+    duration = pulseIn(RANGE_ECHO, HIGH, 4000);
     distance = (duration/2) / 29.1;
     if (distance > 60 || distance < 0) {
         distance = 0;
