@@ -2,18 +2,18 @@
 #include "Arduino.h"
 
 // IR sensors
-const byte LEFT_EDGE = A0;
-const byte RIGHT_EDGE = A1;
+const byte LEFT_EDGE = A0;      // Arduino 19 pin; Atmega PC0 (ADC0/PCINT8)
+const byte RIGHT_EDGE = A1;     // Arduino 20 pin; Atmega PC1 (ADC1/PCINT9)
 
 // Motors
-const byte LEFT_FORWARD = 5;
-const byte LEFT_BACK = 6;
-const byte RIGHT_FORWARD = 9;
-const byte RIGHT_BACK = 10;
+const byte LEFT_FORWARD = 5;    // Arduino 8 pin; Atmega PD5 (PCINT21/OC0B/T1)
+const byte LEFT_BACK = 6;       // Arduino 9 pin; Atmega PD6 (PCINT22/OC0A/AIN0)
+const byte RIGHT_FORWARD = 9;   // Arduino 12 pin; Atmega PB1 (PCINT1/OC1A)
+const byte RIGHT_BACK = 10;     // Arduino 13 pin; Atmega PB2 (PCINT2/SS/OC1B)
 
 // Ultrasonic sensor
-const byte RANGE_ECHO = 7;
-const byte RANGE_TRIG = 8;
+const byte RANGE_ECHO = 7;      // Arduino 10 pin; Atmega PD7 (PCINT23/AIN1)
+const byte RANGE_TRIG = 8;      // Arduino 11 pin; Atmega PB0 (PCINT0/CLKO/ICP1)
 
 MiniRobot::MiniRobot(){
     // Input pins for IR sensors
