@@ -97,3 +97,13 @@ int MiniRobot::distanceToEnemy(){
 
     return distance;
 }
+
+unsigned long MiniRobot::ultraSoundDuration(){
+    unsigned long duration;
+    digitalWrite(RANGE_TRIG, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(RANGE_TRIG, LOW);
+    duration = pulseIn(RANGE_ECHO, HIGH, 4000);
+
+    return duration;
+}

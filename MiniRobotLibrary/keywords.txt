@@ -11,3 +11,4 @@ rightStop       KEYWORD2
 leftEdge        KEYWORD2
 rightEdge       KEYWORD2
 distanceToEnemy     KEYWORD2
+ultraSoundDuration  KEYWORD2

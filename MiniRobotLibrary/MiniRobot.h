@@ -22,6 +22,7 @@ public:
     bool leftEdge();
     bool rightEdge();
     int distanceToEnemy();
+    unsigned long ultraSoundDuration();
 };
 
 #endif
