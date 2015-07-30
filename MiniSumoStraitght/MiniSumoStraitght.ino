@@ -3,18 +3,10 @@
 MiniRobot robot;
 
 byte status;
-/*
-0 - don't need changes;
-1 - counter only
-2 - drive straight back;
-3 - drive straight forward;
-4 - spin around
- - enemy forward;
-*/
-
 unsigned long start_millis;
-long delay_millis;
-long dist;
+long delay_millis, enemy_millis = 5;
+long dist, dist_before, dist_good = 0;
+int good_count = 3;
 
 void setup() {
   pinMode(A0,INPUT);   // set Pin as Input (default)
@@ -23,8 +15,10 @@ void setup() {
   PCIFR  |= bit(1);
   PCICR  |= bit(1);
   status = 2;
+  start_millis = millis();
 }
 
+//interupt for IR sensor changes
 ISR (PCINT1_vect)
 {
   if (robot.leftEdge() || robot.rightEdge()) {
@@ -33,9 +27,8 @@ ISR (PCINT1_vect)
 }
 
 void loop() {
-  Serial.println(status);
   switch (status) {
-    case 1:      
+    case 1:
       if ((millis() - start_millis) >= delay_millis) {
         status = 3;
       }
@@ -52,15 +45,28 @@ void loop() {
       break;
     case 4:
       robot.rightBack();
-      robot.leftForward();
-      delay_millis = 400;
+      robot.leftStop();
+      delay_millis = 80;
       start_millis = millis();
       status = 5;
       break;
     case 5:
-      dist = robot.distanceToEnemy();
-      if (((millis() - start_millis) >= delay_millis) || (dist > 5)) {
+      if (start_millis + enemy_millis <= millis()){
+        dist = robot.distanceToEnemy();
+        start_millis = millis();
+        if(dist + 2 >= dist_good && dist - 2 <= dist_good){
+          good_count--;
+        } else {
+          good_count = 3;
+          dist_good = dist;
+        }
+        if(dist != 0 && dist_good == 0){
+          dist_good = dist;
+        }
+      }
+      if (((millis() - start_millis) >= delay_millis) || (good_count <= 0 && dist_good > 0 && dist_good < 40)) {
         status = 3;
+        good_count = 3;
       }
       break;
   }
