@@ -34,7 +34,7 @@ void loop() {
       }
       break;
     case 2:
-      robot.back();
+      robot.backward();
       delay_millis = 600;
       start_millis = millis();
       status = 1;
@@ -44,7 +44,7 @@ void loop() {
       status = 0;
       break;
     case 4:
-      robot.rightBack();
+      robot.rightBackward();
       robot.leftStop();
       delay_millis = 80;
       start_millis = millis();
