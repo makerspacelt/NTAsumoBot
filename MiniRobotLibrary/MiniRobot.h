@@ -11,13 +11,13 @@ class MiniRobot {
 public:
     MiniRobot();
     void forward();
-    void back();
+    void backward();
     void stop();
     void leftForward();
-    void leftBack();
+    void leftBackward();
     void leftStop();
     void rightForward();
-    void rightBack();
+    void rightBackward();
     void rightStop();
     bool leftEdge();
     bool rightEdge();

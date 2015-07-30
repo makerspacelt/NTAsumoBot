@@ -36,9 +36,9 @@ void MiniRobot::forward(){
     rightForward();
 }
 
-void MiniRobot::back(){
-    leftBack();
-    rightBack();
+void MiniRobot::backward(){
+    leftBackward();
+    rightBackward();
 }
 
 void MiniRobot::stop(){
@@ -51,7 +51,7 @@ void MiniRobot::leftForward(){
     digitalWrite(LEFT_FORWARD, HIGH);
 }
 
-void MiniRobot::leftBack(){
+void MiniRobot::leftBackward(){
     digitalWrite(LEFT_FORWARD, LOW);
     digitalWrite(LEFT_BACK, HIGH);
 }
@@ -66,7 +66,7 @@ void MiniRobot::rightForward(){
     digitalWrite(RIGHT_FORWARD, HIGH);
 }
 
-void MiniRobot::rightBack(){
+void MiniRobot::rightBackward(){
     digitalWrite(RIGHT_FORWARD, LOW);
     digitalWrite(RIGHT_BACK, HIGH);
 }
@@ -90,7 +90,7 @@ int MiniRobot::distanceToEnemy(){
     delayMicroseconds(10);
     digitalWrite(RANGE_TRIG, LOW);
     duration = pulseIn(RANGE_ECHO, HIGH, 4000);
-    distance = duration / 58.2; // same as duration / 2 / 29.1, only it will be one operation
+    distance = duration / 58;
     if (distance > 60 || distance < 0) {
         distance = 0;
     }
