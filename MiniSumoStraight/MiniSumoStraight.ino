@@ -15,6 +15,7 @@ void setup() {
   PCIFR  |= bit(1);
   PCICR  |= bit(1);
   status = 2;
+  delay(5000);
   start_millis = millis();
 }
 
